@@ -2,16 +2,25 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './config/connectDB'
-import router from './routes/index'
+import{router} from './routes/index'
 
 dotenv.config()
 
 const app = express()
 
+// MIDDLEWARES
+app.use(express.json())
 app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
 }))
+
+app.use('/api', router)
+
+
+
+
+
 
 
 const PORT = process.env.PORT || 8080
@@ -21,11 +30,6 @@ app.get('/', (req, res) => {
         xxd: 'Holaaa MUNDo'
     })
 })
-
-// API FOR ENDPOINTS
-app.use('/api', router)
-
-
 
 
 
