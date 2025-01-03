@@ -1,7 +1,8 @@
 import express from 'express'
 import { registerUser } from '../controller/registerUser'
 import checkEmail from '../controller/checkEmail'
-import checkPassword from '../controller/chekPassword'
+import checkPassword from '../controller/checkPassword'
+import userDetails from '../controller/userDetails'
 
 
 
@@ -12,3 +13,4 @@ router.post('/register', registerUser)
 
 router.post('/email', checkEmail)
 router.post('/password', checkPassword)
+router.get('/user-details', userDetails)

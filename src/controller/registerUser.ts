@@ -6,7 +6,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
     try {
 
-        const { name, email, password, profile_pic } = req.body
+        const { email, password } = req.body
         const checkEmail = await userModel.findOne({ email })
 
         if (checkEmail) {
@@ -14,6 +14,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
                 message: 'Usuario ya registrado',
                 error: true
             })
+            return
         }
 
         const salt = await bcrypt.genSalt(10)
@@ -32,12 +33,14 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
             data: userSave,
             success: true
         })
+        return
 
     } catch (error) {
         res.status(500).json({
             message: (error as Error).message,
             error: true
         })
+        return
     }
 }
 

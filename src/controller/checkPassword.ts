@@ -17,9 +17,11 @@ async function checkPassword(req: Request, res: Response): Promise<void> {
 
         if (!verifyPassword) {
             res.status(400).json({
-                message: 'Porfavor verifica tu cotnraseña',
+                message: 'Porfavor verifica tu contraseña',
                 error: true
             })
+            return
+
         }
 
         const tokenData = {
@@ -27,26 +29,29 @@ async function checkPassword(req: Request, res: Response): Promise<void> {
             email: user?.email
         }
 
-        const token = await jwt.sign(tokenData, process.env.SECRET_JWT_KEY || '',{
+        const token = await jwt.sign(tokenData, process.env.SECRET_JWT_KEY || '', {
             expiresIn: '1d'
         })
 
-        const cookiesOption = {
-            http: true,
-            secure: true
+        const cookieOptions = {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
         }
 
-        res.cookie('token',token, cookiesOption).status(200).json({
+
+        res.cookie('token', token, cookieOptions).status(200).json({
             message: 'Inicio de Sesion exitoso',
             success: true,
             token: token
         })
+        return
 
     } catch (error) {
         res.status(500).json({
             message: (error as Error).message,
             error: true
         })
+        return
     }
 
 }
