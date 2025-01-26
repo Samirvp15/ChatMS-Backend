@@ -21,7 +21,8 @@ async function checkEmail(req: Request, res: Response): Promise<void> {
 
         res.status(200).json({
             message: 'Usuario verificado',
-            success: true
+            success: true,
+            data: checkEmail
         })
         return
 
