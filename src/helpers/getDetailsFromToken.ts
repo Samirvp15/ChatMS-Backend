@@ -3,20 +3,22 @@ import { userModel } from '../models/User'
 
 
 interface userDetails {
-    name: string,
-    email: string,
-    profile_pic: string,
-    _id: string
+    message?: string,
+    logout?: boolean,
+    name?: string,
+    email?: string,
+    profile_pic?: string,
+    _id?: string
 }
 
 
 export const getUserDetailsFromToken = async (token: string): Promise<userDetails> => {
-    // if (!token) {
-    //     return {
-    //         message: 'Sesion terminada',
-    //         logout: true,
-    //     }
-    // }
+    if (!token) {
+        return {
+            message: 'Sesion terminada',
+            logout: true,
+        }
+    }
 
     const decode = jwt.verify(token, process.env.SECRET_JWT_KEY || '') as { id: string }
     const user = await userModel.findById(decode.id).select('name email profile_pic _id') // selecciona solo los campos necesarios
