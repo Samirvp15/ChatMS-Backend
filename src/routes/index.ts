@@ -5,6 +5,7 @@ import checkPassword from '../controller/checkPassword'
 import userDetails from '../controller/userDetails'
 import logout from '../controller/logout'
 import updateUserDetails from '../controller/updateUserDetails'
+import { searchUser } from '../controller/searchUser'
 
 
 
@@ -18,3 +19,4 @@ router.post('/password', checkPassword)
 router.get('/user-details', userDetails)
 router.get('/logout', logout)
 router.post('/update-user', updateUserDetails)
+router.post('/search-user', searchUser)
