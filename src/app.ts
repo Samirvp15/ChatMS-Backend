@@ -4,10 +4,11 @@ import dotenv from 'dotenv'
 import connectDB from './config/connectDB'
 import { router } from './routes/index'
 import cookieParser from 'cookie-parser'
+import { app,server } from './socket/index'
 
 dotenv.config()
 
-const app = express()
+//const app = express()
 
 // MIDDLEWARES
 app.use(cookieParser())
@@ -26,9 +27,7 @@ app.use('/api', router)
 const PORT = process.env.PORT || 8080
 
 app.get('/', (req, res) => {
-    res.json({
-        xxd: 'Holaaa MUNDo'
-    })
+    res.send('Holaaa!!')
 })
 
 
@@ -36,7 +35,7 @@ app.get('/', (req, res) => {
 
 
 connectDB().then(() => {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log('Server running at: ', PORT)
     })
 })
