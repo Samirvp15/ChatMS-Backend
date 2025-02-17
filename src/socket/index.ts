@@ -45,9 +45,14 @@ io.on("connection", async (socket) => {
         socket.emit('message-user', payload)
     })
 
+    //New Message
+    socket.on('new-message',(data)=>{
+        console.log('new messsage: ', data)
+    })
 
     socket.on("disconnect", () => {
-        console.log('Usuario desconectado: ', socket.id)
+        onlineUser.delete(user._id?.toString())
+        io.emit('onlineUser', Array.from(onlineUser)) 
     });
 });
 
