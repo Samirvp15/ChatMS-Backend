@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { InferSchemaType, Schema } from "mongoose";
 
 
 const messageSchema = new Schema({
@@ -18,8 +18,14 @@ const messageSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    msgByUserId : {
+        type : mongoose.Schema.ObjectId,
+        required : true,
+        ref : 'User'
+    }
 }, {
     timestamps: true
 })
+export type MessageType = InferSchemaType<typeof messageSchema>;
 
 export const MessageModel = mongoose.model('Message', messageSchema)

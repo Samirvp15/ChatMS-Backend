@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { InferSchemaType, Schema } from "mongoose";
 
 
 
@@ -21,5 +21,7 @@ const conversationSchema = new Schema({
 },{
     timestamps: true
 })
+
+export type ConversationType = InferSchemaType<typeof conversationSchema>;
 
 export const ConversationModel = mongoose.model('Conversation', conversationSchema)
