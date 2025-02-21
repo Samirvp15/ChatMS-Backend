@@ -1,12 +1,12 @@
-import { Request, Response } from 'express'
+import { CookieOptions, Request, Response } from 'express'
 
 
 
 async function logout(req: Request, res: Response): Promise<void> {
 
     try {
-        const cookieOptions = {
-            httpOnly: false,
+        const cookieOptions: CookieOptions  = {
+            httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
         }
 

@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import { CookieOptions, Request, Response } from 'express'
 import { userModel } from '../models/User'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
@@ -33,8 +33,8 @@ async function checkPassword(req: Request, res: Response): Promise<void> {
             expiresIn: '1d'
         })
 
-        const cookieOptions = {
-            httpOnly: false,
+        const cookieOptions: CookieOptions  = {
+            httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
         }
 
