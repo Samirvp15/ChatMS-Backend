@@ -16,7 +16,7 @@ const io = new Server(server, {
         origin: [`${process.env.FRONTEND_URL}` || 'http://localhost:8080'],
         credentials: true,
     }
-});
+})
 
 //Online user
 const onlineUser = new Set()

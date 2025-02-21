@@ -1,23 +1,6 @@
 import { ConversationModel } from "../models/Conversation"
 import { Document, Types } from "mongoose";
 
-// interface IMessage extends Document {
-//     text: string;
-//     imageURL: string;
-//     videoURL: string;
-//     seen: boolean;
-//     msgByUserId: Types.ObjectId; // O también puede ser string si así lo prefieres
-//     createdAt: Date;
-//     updatedAt: Date;
-// }
-
-// interface IConversation extends Document {
-//     sender: Types.ObjectId;
-//     receiver: Types.ObjectId;
-//     messages: IMessage[];
-//     createdAt: Date;
-//     updatedAt: Date;
-// }
 
 interface PopulatedMessage extends Document {
     text?: string;

@@ -34,7 +34,7 @@ async function checkPassword(req: Request, res: Response): Promise<void> {
         })
 
         const cookieOptions = {
-            httpOnly: true,
+            httpOnly: false,
             secure: process.env.NODE_ENV === 'production',
         }
 
