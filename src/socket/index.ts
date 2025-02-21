@@ -22,8 +22,7 @@ const io = new Server(server, {
 const onlineUser = new Set()
 
 io.on("connection", async (socket) => {
-    // ...
-    //console.log('Usuario conectado: ', socket.id)
+
     const token = socket.handshake.auth.token
 
     //Current user Details
@@ -121,7 +120,6 @@ io.on("connection", async (socket) => {
 
     //sidebar
     socket.on('sidebar', async (currentUserId) => {
-        console.log("current user", currentUserId)
 
         const conversation = await getConversation(currentUserId)
 
