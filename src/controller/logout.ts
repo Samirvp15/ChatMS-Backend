@@ -7,7 +7,7 @@ async function logout(req: Request, res: Response): Promise<void> {
     try {
         const cookieOptions: CookieOptions  = {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV_COOKIES === 'production',
         }
 
 
