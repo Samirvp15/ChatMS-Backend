@@ -6,8 +6,9 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
     try {
 
-        const { email, password } = req.body
+        const { name, email, password } = req.body
         const checkEmail = await userModel.findOne({ email })
+        const nameTrimmed = name.trim()
 
         if (checkEmail) {
             res.status(400).json({
@@ -22,6 +23,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
         const payload = {
             ...req.body,
+            name: nameTrimmed,
             password: hashPassword
         }
 
